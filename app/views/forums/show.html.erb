@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @forum.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @forum.body %>
+</p>
+<hr>
+<% @forum.comments.each do |comment| %>
+	<h2>Name:</h2>
+	<%= comment.commenter %> <br>
+	<%= comment.body %>
+	<hr>
+<% end %>
+
+<%= form_for([@forum, @forum.comments.build]) do |f| %>
+		 <%= f.text_field :commenter %> <br>
+		 <%= f.text_area :body %> <br>
+		 <%= f.submit "post comment" %> <br>
+<% end %>
+<hr>
+
+<%= link_to 'Edit', edit_forum_path(@forum) %> |
+<%= link_to 'Back', forums_path %>

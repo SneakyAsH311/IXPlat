@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Forums</h1>
+
+
+    <% @jobs.each do |job| %>
+      
+        
+       <div class="posts">
+              <h1> <%= link_to job.title, job %></h1>
+              <%= truncate job.description %>
+              <%= time_ago_in_words job.created_at %>
+        </div>    
+
+         <div class="options"><%= link_to 'Edit', edit_job_path(job) %>
+              <%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      
+    <% end %>
+  
+
+
+<br>
+
+<%= link_to 'New Job', new_job_path %>
+<%= will_paginate @jobs, renderer: BootstrapPagination::Rails , inner_window: 0, outer_window: 0 %>

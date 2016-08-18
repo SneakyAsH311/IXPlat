@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Forums</h1>
+
+
+    <% @forums.each do |forum| %>
+      
+        
+       <div class="posts">
+              <h1> <%= link_to forum.title, forum %></h1>
+              <%= truncate forum.body %>
+              <%= time_ago_in_words forum.created_at %>
+        </div>    
+
+         <div class="options"><%= link_to 'Edit', edit_forum_path(forum) %>
+              <%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      
+    <% end %>
+  
+
+
+<br>
+
+<%= link_to 'New Forum', new_forum_path %>
+<%= will_paginate @forums, renderer: BootstrapPagination::Rails , inner_window: 0, outer_window: 0 %>
